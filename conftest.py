@@ -40,7 +40,7 @@ def deselect_non_sanity(config, items):
         for mark in item.iter_markers_with_node():
             _, mark_ = mark
             name = mark_.name
-            print(f"*** processing mark {name}... ***")
+            print(f"*** Processing mark {name}... ***")
             kwargs = mark_.kwargs
             sanity = kwargs.get('sanity', False)
             if sanity is True:
