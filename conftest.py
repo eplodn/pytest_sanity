@@ -37,7 +37,6 @@ def deselect_non_sanity(config, items):
 
     for item in items:
         to_keep = False
-        to_discard = False
         for mark in item.iter_markers_with_node():
             _, mark_ = mark
             name = mark_.name
@@ -53,9 +52,8 @@ def deselect_non_sanity(config, items):
             discard.append(item)
     print("Keep: ========" + "\n".join([x.nodeid for x in keep]) + " ======== ")
     print("Discard: ========" + "\n".join([x.nodeid for x in discard]) + " ======== ")
+
     items[:] = keep
     config.hook.pytest_deselected(items=discard)
     return items
 
-
-    pass
