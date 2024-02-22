@@ -3,13 +3,9 @@ import os
 import sys
 python_ver = sys.version_info
 
-
-def pytest_sessionfinish(session, exitstatus):
-    print("Now in pytest_sessionfinish", flush=True)
-
 @pytest.hookimpl(trylast=True)
 def pytest_collection_modifyitems(config, items):
-    print("Now in pytest_collection_modifyitems", flush=True)
+    print("\n*** Now in pytest_collection_modifyitems ***", flush=True)
     deselect_non_sanity(config, items)
 
 @pytest.fixture(scope='session', autouse=True)
@@ -20,6 +16,7 @@ def env(request):
 
 @pytest.hookimpl(trylast=True)
 def pytest_sessionfinish(session, exitstatus):
+    print("\n*** Now in pytest_sessionfinish ***", flush=True)
     if python_ver.major == 3 and python_ver.minor >= 9:
         from _pytest.main import ExitCode
         EXIT_NOTESTSCOLLECTED = ExitCode.NO_TESTS_COLLECTED
